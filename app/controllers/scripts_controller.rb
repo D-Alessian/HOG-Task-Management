@@ -9,10 +9,11 @@ class ScriptsController < ApplicationController
   def assign
     # This query assumes you are using PostgreSQL. For MySQL, use "RAND()" instead of "RANDOM()"
     @script = Script.where(user_id: nil, completed: false).order("RANDOM()").first
-    if Script.find_by(user: current_user).present?
+    if Script.where(user: current_user, completed: false).exists?
       flash[:alert] = "You already have an assigned script."
     elsif @script
       @script.update(user: current_user)
+      @script.update(assigned: true)
       flash[:notice] = "Script assigned: #{@script.name}"
     else
       flash[:alert] = "No unassigned scripts available."

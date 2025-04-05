@@ -12,6 +12,7 @@
         <th>User Email</th>
         <th>Completed?</th>
         <th>Actions</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,15 @@
           <% unless script.completed %>
             <%= button_to "Complete", complete_script_path(script), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-primary", form_class: "d-inline" %>
           <% end %>
+          </td>
+          <td>
+            <% if script.completed %>
+              <a>CLOSED</a>
+            <% elsif script.assigned %>
+              <a>ONGOING</a>
+            <% else %>
+              <a>OPEN</a>
+            <% end %>
           </td>
         </tr>
       <% end %>
