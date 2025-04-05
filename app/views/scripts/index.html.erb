@@ -15,6 +15,7 @@
         <th>Completed?</th>
         <th>Actions</th>
         <th>Status</th>
+        <th>Open in GitHub</th>
       </tr>
     </thead>
     <tbody>
@@ -31,18 +32,22 @@
           <td><%= script.completed %></td>
           <td>
           <% unless script.completed %>
-            <%= button_to "Complete", complete_script_path(script), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-primary", form_class: "d-inline" %>
+            <% if script.user === current_user %>
+              <%= button_to "Complete", complete_script_path(script), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-primary", form_class: "d-inline" %>
+            <% end %>
           <% end %>
           </td>
           <td>
             <% if script.completed %>
-              <a>CLOSED</a>
+              <a style="color: red;">CLOSED</a>
             <% elsif script.assigned %>
-              <a>ONGOING</a>
+              <a style="color: orange;">ONGOING</a>
             <% else %>
-              <a>OPEN</a>
+              <a style="color: green;">OPEN</a>
             <% end %>
           </td>
+          <td>
+            <%= link_to "Open", gen_link(script), target: "_blank", class: "btn btn-secondary" %>
         </tr>
       <% end %>
     </tbody>
