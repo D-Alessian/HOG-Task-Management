@@ -28,7 +28,7 @@
           <td><%= script.completed %></td>
           <td>
           <% unless script.completed %>
-            <%= link_to "Complete", complete_script_path(script), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+            <%= button_to "Complete", complete_script_path(script), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-primary", form_class: "d-inline" %>
           <% end %>
           </td>
         </tr>

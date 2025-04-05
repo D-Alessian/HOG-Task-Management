@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   root to: "scripts#index"
 
   resources :scripts do
-  collection do
-    get 'assign'
+    collection do
+      get 'assign'
+    end
+    member do
+      patch 'complete'
+    end
   end
-  member do
-    patch 'complete'
-  end
-end
 end
