@@ -1,6 +1,6 @@
 class ScriptsController < ApplicationController
   def index
-    @scripts = Script.all.order("Completed ASC")
+    @scripts = Script.all.order("completed ASC, assigned DESC")
   end
 
   def show
