@@ -7,3 +7,21 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Script.create!(
+  {
+    name: "Script 1",
+    path: "/Test/Scripts/",
+    assigned: true,
+    user: User.all.sample,
+    completed: true,
+  })
+
+
+Script.create!(
+  {
+    name: "Script 2",
+    path: "/Test/Scripts/Amogus/",
+    assigned: false,
+    completed: false,
+  })
