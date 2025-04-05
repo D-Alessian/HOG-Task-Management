@@ -5,6 +5,7 @@
     <p>Assigned: <%= @assigned_count %> of <%= @total_count %></p>
   </div>
   <%= link_to "Assign Script (random)", assign_scripts_path, class: "btn btn-primary" %>
+  <a><%= link_to "Source Code", "https://github.com/D-Alessian/HOG-Task-Management", class: "btn btn-secondary", target: "_blank" %> <-- Star the repo please I'm starving. All my stars went to HOG</a>
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
@@ -52,6 +53,4 @@
       <% end %>
     </tbody>
   </table>
-  <%= link_to "Source Code", "https://github.com/D-Alessian/HOG-Task-Management", class: "btn btn-secondary", target: "_blank" %>
-
 </div>
