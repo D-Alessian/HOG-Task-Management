@@ -1,6 +1,11 @@
 class ScriptsController < ApplicationController
   def index
     @scripts = Script.all.order("completed ASC, assigned DESC")
+    @completed_scripts = @scripts.select { |script| script.completed }
+    @completed_count = @completed_scripts.count
+    @total_count = @scripts.count
+    @assigned_scripts = @scripts.select { |script| script.assigned }
+    @assigned_count = @assigned_scripts.count
   end
 
   def show

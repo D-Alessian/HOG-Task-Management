@@ -1,8 +1,10 @@
 <div class="container">
-  <%= link_to "Assign Script", assign_scripts_path, class: "btn btn-primary" %>
   <div class="justify-content-center">
     <h1>All current scripts</h1>
+    <p>Completion: <%= @completed_count %> of <%= @total_count %></p>
+    <p>Assigned: <%= @assigned_count %> of <%= @total_count %></p>
   </div>
+  <%= link_to "Assign Script (random)", assign_scripts_path, class: "btn btn-primary" %>
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
