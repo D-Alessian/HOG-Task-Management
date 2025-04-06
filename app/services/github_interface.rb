@@ -6,7 +6,9 @@ class GitHubInterface
   end
 
   def fetch_commits(repo_name, branch_name = 'main')
-      return commits = client.commits(repo_name, sha: branch_name, per_page: 30)
+      commits = client.commits(repo_name, sha: branch_name, per_page: 30)
+      Rails.logger.info("Fetched #{commits.size} commits from #{repo_name} on branch #{branch_name}.")
+      return commits
   end
 
   def fetch_commits_by_author(repo_name, author, branch_name = 'main')
