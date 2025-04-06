@@ -5,15 +5,16 @@
     <p>Assigned: <%= @assigned_count %> of <%= @total_count %></p>
   </div>
   <%= link_to "Assign Script (random)", assign_scripts_path, class: "btn btn-primary" %>
-  <a><%= link_to "Source Code", "https://github.com/D-Alessian/HOG-Task-Management", class: "btn btn-secondary", target: "_blank" %> <-- Star the repo please I'm starving. All my stars went to HOG</a>
+  <a><%= link_to "Source Code", "https://github.com/D-Alessian/HOG-Task-Management", class: "btn btn-secondary", target: "_blank" %></a>
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
         <th>Name</th>
         <th>Path</th>
         <th>Assigned?</th>
-        <th>User Email</th>
         <th>Completed?</th>
+        <th>Reviewed?</th>
+        <th>Assigned to</th>
         <th>Actions</th>
         <th>Status</th>
         <th>Open in GitHub</th>
@@ -24,23 +25,32 @@
         <tr>
           <td><%= script.name %></td>
           <td><%= script.path %></td>
-          <td><%= script.assigned %></td>
+          <td><%= raw colorBoolean(script, :assigned) %></td>
+          <td><%= raw colorBoolean(script, :completed) %></td>
+          <td><%= raw colorBoolean(script, :review) %></td>
           <% if script.user.nil? %>
             <td>Not assigned</td>
           <% else %>
             <td><%= script.user.email %></td>
           <% end %>
-          <td><%= script.completed %></td>
           <td>
           <% unless script.completed %>
             <% if script.user === current_user %>
               <%= button_to "Complete", complete_script_path(script), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-primary", form_class: "d-inline" %>
             <% end %>
+          <% else %>
+            <% unless script.user === current_user %>
+              <%= button_to "Review", review_script_path(script), method: :patch, data: { confirm: "Are you sure?" }, class: "btn btn-primary", form_class: "d-inline" %>
+            <% end %>
           <% end %>
           </td>
           <td>
             <% if script.completed %>
-              <a style="color: red;">CLOSED</a>
+              <% if script.review %>
+                <a style="color: red;">CLOSED</a>
+              <% else %>
+                <a style="color: blue;">REVIEW PENDING</a>
+              <% end %>
             <% elsif script.assigned %>
               <a style="color: orange;">ONGOING</a>
             <% else %>

@@ -49,6 +49,7 @@ all_files.each do |file|
     # Set defaults if needed (for example, assigned and completed)
     script.assigned = false
     script.completed = false
+    script.review = false
   end
 end
 

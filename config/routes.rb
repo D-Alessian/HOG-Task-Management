@@ -18,5 +18,8 @@ Rails.application.routes.draw do
     member do
       patch 'complete'
     end
+    member do
+      patch 'review'
+    end
   end
 end
