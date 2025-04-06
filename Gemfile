@@ -70,3 +70,8 @@ gem "devise"
 
 gem 'bootstrap', '~> 5.0.0'
 gem 'sassc-rails', '>= 2.1.0'
+
+gem 'octokit', '~> 5.0'
+gem 'jwt', '~> 2.5'
+gem 'whenever', require: false
+gem 'dotenv-rails'
